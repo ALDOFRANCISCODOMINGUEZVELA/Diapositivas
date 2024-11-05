@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección y Corrección de Errores</title>
+    <style>
+        /* Configuración general */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: #003366;
+            color: #fff;
+        }
+
+        /* Estilo del contenedor de slides */
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Estilo de cada slide */
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Colores para diferenciar slides */
+        .slide:nth-child(1) { background-color: #003366; }
+        .slide:nth-child(2) { background-color: #004080; }
+        .slide:nth-child(3) { background-color: #004d99; }
+        .slide:nth-child(4) { background-color: #0059b3; }
+
+        /* Estilo para títulos */
+        h1, h2 {
+            margin: 0.5em 0;
+            font-size: 4em; /* Tamaño de fuente 4 veces más grande */
+        }
+
+        /* Estilo para subtítulos y contenido */
+        h3, p {
+            margin: 1em 0;
+            font-size: 1.2em;
+        }
+
+        /* Estilos de imagen */
+        .slide img {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+            border: 2px solid #fff;
+            border-radius: 8px;
+        }
+
+        /* Flechas de navegación */
+        .navigation-arrows {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            gap: 10px;
+            font-size: 24px;
+        }
+
+        .navigation-arrows button {
+            background-color: #222;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .navigation-arrows button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container" id="slidesContainer">
+        
+        <!-- Slide 1: Título -->
+        <div class="slide">
+            <h1>Detección y Corrección de Errores</h1>
+            <p>Capítulo 10 - Comunicación de Datos y Redes</p>
+            <p>Basado en el libro de Behrouz A. Forouzan</p>
+        </div>
+
+        <!-- Slide 2: Introducción -->
+        <div class="slide">
+            <h2>Introducción</h2>
+            <p>La detección y corrección de errores es esencial en las redes de comunicación modernas. Sin estos procesos, los datos transmitidos podrían llegar corruptos al destino, comprometiendo la confiabilidad de la información. Los errores ocurren debido a interferencias, ruido y otros factores en el medio de transmisión.</p>
+        </div>
+
+        <!-- Slide 3: Tipos de Errores -->
+        <div class="slide">
+            <h2>Tipos de Errores</h2>
+            <p>Existen principalmente dos tipos de errores: de un solo bit y de ráfaga. Estos afectan de forma diferente la transmisión de datos y requieren distintos métodos de corrección. Entender cada tipo permite seleccionar la mejor técnica de corrección.</p>
+        </div>
+
+        <!-- Slide 4: Error de un solo bit -->
+        <div class="slide">
+            <h2>Error de un solo bit</h2>
+            <p>Este tipo de error ocurre cuando solo un bit en una unidad de datos es alterado durante la transmisión. Es común en medios de transmisión con pocas interferencias. En la imagen a continuación se muestra un ejemplo de un error de un solo bit.</p>
+            <img src="error_bit.png" alt="Error de un solo bit">
+        </div>
+
+        <!-- Slide 5: Error de ráfaga -->
+        <div class="slide">
+            <h2>Error de ráfaga</h2>
+            <p>Un error de ráfaga sucede cuando varios bits son alterados de forma continua. Este tipo de error es más complejo de corregir y suele ocurrir en entornos con alta interferencia. La siguiente imagen ilustra un ejemplo de un error de ráfaga.</p>
+            <img src="error_rafaga.png" alt="Error de ráfaga">
+        </div>
+
+        <!-- Slide 6: Métodos de Detección -->
+        <div class="slide">
+            <h2>Métodos de Detección de Errores</h2>
+            <p>Existen varios métodos para detectar errores, como la paridad, checksum y los códigos cíclicos (CRC). Cada método tiene sus ventajas y se utiliza según las necesidades de la red. La detección permite identificar errores antes de que afecten los datos.</p>
+        </div>
+
+        <!-- Slide 7: Método de Paridad -->
+        <div class="slide">
+            <h2>Paridad</h2>
+            <p>El método de paridad añade un bit extra a los datos transmitidos para asegurar que el número total de bits sea par o impar. Este método es simple, pero su eficacia es limitada en casos de múltiples errores.</p>
+        </div>
+    </div>
+
+    <!-- Flechas de navegación -->
+    <div class="navigation-arrows">
+        <button onclick="previousSlide()">⬅️</button>
+        <button onclick="nextSlide()">➡️</button>
+    </div>
+
+    <!-- Script para manejar las transiciones -->
+    <script>
+        const slidesContainer = document.getElementById('slidesContainer');
+        let currentSlide = 0;
+
+        function updateSlide() {
+            const offsetX = -currentSlide * 100;
+            slidesContainer.style.transform = `translateX(${offsetX}vw)`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slidesContainer.children.length - 1) {
+                currentSlide++;
+            }
+            updateSlide();
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+            }
+            updateSlide();
+        }
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        updateSlide();
+    </script>
+</body>
+</html>
