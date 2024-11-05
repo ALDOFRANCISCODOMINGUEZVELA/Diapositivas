@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medios de Transmisión - Transmission Media</title>
+    <style>
+        /* Configuración general */
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            margin: 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #004d40;
+        }
+
+        /* Estilo del contenedor de slides */
+        .slides-container {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.5s ease;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Estilo de cada slide */
+        .slide {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Colores de fondo de cada slide */
+        .slide:nth-child(1) { background-color: #004d40; }
+        .slide:nth-child(2) { background-color: #00695c; }
+        .slide:nth-child(3) { background-color: #00796b; }
+        .slide:nth-child(4) { background-color: #00897b; }
+        .slide:nth-child(5) { background-color: #009688; }
+
+        /* Estilo para títulos grandes */
+        h1, h2 {
+            font-size: 4em; /* Tamaño del título */
+            margin: 0.5em 0;
+        }
+
+        /* Estilo para contenido */
+        p, ul {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0.5em 0;
+            text-align: justify;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 1.5em;
+        }
+
+        /* Flechas de navegación */
+        .navigation-arrows {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 24px;
+        }
+
+        .navigation-arrows button {
+            background-color: #004d40;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .navigation-arrows button:hover {
+            background-color: #00695c;
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container" id="slidesContainer">
+        
+        <!-- Slide 1: Título -->
+        <div class="slide">
+            <h1>Medios de Transmisión</h1>
+            <p>Capítulo 7 - Comunicación de Datos y Redes</p>
+            <p>Basado en el libro de Behrouz A. Forouzan</p>
+        </div>
+
+        <!-- Slide 2: Introducción -->
+        <div class="slide">
+            <h2>Introducción a los Medios de Transmisión</h2>
+            <p>Los medios de transmisión son los caminos físicos que permiten la transferencia de datos entre dispositivos en una red. Estos caminos pueden afectar la velocidad, la distancia y la calidad de la transmisión. Los medios de transmisión se dividen en dos categorías principales: medios guiados (cableados) y medios no guiados (inalámbricos).</p>
+        </div>
+
+        <!-- Slide 3: Medios Guiados -->
+        <div class="slide">
+            <h2>Medios Guiados</h2>
+            <p>Los medios guiados utilizan un medio físico para guiar las señales. Son comúnmente empleados en redes locales (LAN) y se dividen en tres tipos principales:</p>
+            <ul>
+                <li><strong>Pareado Trenzado:</strong> Consiste en cables de cobre trenzados en pares, ofreciendo bajo costo y facilidad de instalación, aunque con limitada capacidad de ancho de banda y susceptibilidad a interferencias.</li>
+                <li><strong>Coaxial:</strong> Tiene un conductor central rodeado de aislamiento y blindaje, permitiendo mayor ancho de banda que el pareado trenzado. Es utilizado en televisión por cable y redes de área local.</li>
+                <li><strong>Fibra Óptica:</strong> Utiliza fibras de vidrio o plástico para transmitir datos mediante luz. Ofrece altas velocidades y es resistente a interferencias, siendo ideal para largas distancias.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: Medios No Guiados -->
+        <div class="slide">
+            <h2>Medios No Guiados</h2>
+            <p>Los medios no guiados no requieren un medio físico y transmiten datos a través del aire. Se dividen en los siguientes tipos:</p>
+            <ul>
+                <li><strong>Ondas de Radio:</strong> Utilizadas en redes Wi-Fi, las ondas de radio permiten transmitir datos sin cables y son adecuadas para largas distancias. Sin embargo, son vulnerables a interferencias y pueden ser interceptadas fácilmente.</li>
+                <li><strong>Microondas:</strong> Necesitan antenas alineadas y se emplean en enlaces de larga distancia. Son susceptibles a interferencias climáticas y requieren líneas de visión claras.</li>
+                <li><strong>Infrarrojo:</strong> Utilizado en dispositivos de corto alcance, como controles remotos. Requiere una línea de visión directa y no atraviesa obstáculos.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: Consideraciones Finales -->
+        <div class="slide">
+            <h2>Consideraciones al Seleccionar un Medio</h2>
+            <p>La elección de un medio de transmisión depende de varios factores, como el costo, el alcance, la velocidad y la susceptibilidad a interferencias. Los medios guiados suelen ser más seguros y menos propensos a interferencias, mientras que los medios no guiados ofrecen mayor flexibilidad y movilidad.</p>
+        </div>
+    </div>
+
+    <!-- Flechas de navegación -->
+    <div class="navigation-arrows">
+        <button onclick="previousSlide()">⬆️</button>
+        <button onclick="nextSlide()">⬇️</button>
+    </div>
+
+    <!-- Script para manejar las transiciones -->
+    <script>
+        const slidesContainer = document.getElementById('slidesContainer');
+        let currentSlide = 0;
+
+        function updateSlide() {
+            const offsetY = -currentSlide * 100;
+            slidesContainer.style.transform = `translateY(${offsetY}vh)`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slidesContainer.children.length - 1) {
+                currentSlide++;
+            }
+            updateSlide();
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+            }
+            updateSlide();
+        }
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown') {
+                nextSlide();
+            } else if (event.key === 'ArrowUp') {
+                previousSlide();
+            }
+        });
+
+        updateSlide();
+    </script>
+</body>
+</html>
